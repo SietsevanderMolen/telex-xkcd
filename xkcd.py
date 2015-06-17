@@ -1,6 +1,7 @@
 import tgl
 from telex import plugin
 import xkcd
+import os
 
 
 class XKCDPlugin(plugin.TelexPlugin):
@@ -36,5 +37,13 @@ class XKCDPlugin(plugin.TelexPlugin):
     def return_comic(self, msg, comic):
         filename = self.bot.download_to_file(comic.getImageLink(), "png")
         peer = self.bot.get_peer_to_send(msg)
-        tgl.send_photo(peer, filename)
+
+        def cleanup_cb(success, msg):
+            if success:
+                os.remove(filename)
+            else:
+                return "Giphy: something went wrong"
+
+        tgl.send_photo(peer, filename, cleanup_cb)
         return comic.getTitle() + ". " + comic.getExplanation()
+
