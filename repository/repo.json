@@ -1,0 +1,9 @@
+{
+    "name": "XKCD",
+    "description": "Get xkcd's from xkcd.com",
+    "version": "1.0",
+    "default_enable": ["XKCD"],
+    "homepage": "https://github.com/sietsevandermolen/telex-xkcd",
+    "repo": "https://github.com/sietsevandermolen/telex-xkcd.git",
+    "branch": "master"
+}
